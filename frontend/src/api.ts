@@ -1,4 +1,10 @@
-const API = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
+// Normaliza la URL de la API: quita barras finales y agrega "/api" si falta,
+// porque el backend expone todas sus rutas bajo /api.
+function buildApiUrl(raw?: string): string {
+  const base = (raw || "http://localhost:3000").trim().replace(/\/+$/, "");
+  return base.endsWith("/api") ? base : `${base}/api`;
+}
+const API = buildApiUrl(import.meta.env.VITE_API_URL);
 export type Court = {
   id: number; name: string; sport: string; location: string; pricePerHour: number;
   imageUrl: string; description: string; capacity: number;
