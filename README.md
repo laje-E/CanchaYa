@@ -2,6 +2,14 @@
 
 Plataforma web para descubrir y reservar canchas deportivas.
 
+## Enlaces del proyecto
+
+- Aplicación web (Netlify): https://canchayagent.netlify.app
+
+- Backend / API (Render): https://canchaya-l26f.onrender.com
+
+- Base de datos (Neon): PostgreSQL alojada en Neon.
+
 ## Funcionalidades
 - Catálogo filtrable por deporte y búsqueda por nombre/ubicación.
 - Registro e inicio de sesión con contraseña hasheada.
