@@ -59,7 +59,7 @@ router.get("/bookings/mine", requireAuth, async (req, res, next) => {
 router.post("/bookings", requireAuth, async (req, res, next) => {
   const client = await pool.connect();
   try {
-    const d = z.object({ courtId:z.number().int().positive(), date:z.string(), time:z.string(), durationMinutes:z.number().int() }).parse(req.body);
+    const d = z.object({ courtId:z.coerce.number().int().positive(), date:z.string(), time:z.string(), durationMinutes:z.number().int() }).parse(req.body);
     await client.query("BEGIN");
     const courtResult = await client.query("SELECT * FROM courts WHERE id=$1 AND active=TRUE FOR UPDATE", [d.courtId]);
     if (!courtResult.rowCount) { await client.query("ROLLBACK"); return res.status(404).json({ error:"La cancha no existe o no está disponible." }); }
